@@ -1,3 +1,4 @@
+import 'package:counter/bloc/counter_bloc.dart';
 import 'package:counter/counter_page.dart';
 import 'package:counter/cubit/counter_cubit.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,11 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counterCubit = BlocProvider.of<CounterCubit>(context);
+    // final counterCubit = BlocProvider.of<CounterCubit>(context);
+    // final counterBloc = BlocProvider.of<CounterBloc>(context);
+
     print("home_page build");
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -25,15 +29,25 @@ class MyHomePage extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
             BlocBuilder<CounterCubit, int>(
-              bloc: counterCubit,
+              // bloc: counterCubit, // optional
               builder: (context, count) {
-                print("home_page $count");
+                print("cubid $count");
                 return Text(
-                  '$count',
+                  'Cubit $count',
                   style: Theme.of(context).textTheme.headlineMedium,
                 );
               },
             ),
+            BlocBuilder<CounterBloc, int>(
+              // bloc: counterBloc, // Optional
+              builder: (context, count) {
+                print("bloc $count");
+                return Text(
+                  'Bloc $count',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
+            )
           ],
         ),
       ),
