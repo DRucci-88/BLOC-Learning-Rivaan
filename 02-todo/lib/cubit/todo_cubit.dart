@@ -8,7 +8,23 @@ class TodoCubit extends Cubit<TodoState> {
   TodoCubit() : super(const TodoInitial([]));
 
   void add(String name) {
+    if (name.isEmpty) {
+      addError('Title cannot be empty');
+      return;
+    }
     final Todo todo = Todo(name: name, createdAt: DateTime.now());
     emit(TodoSuccess([...state.todos, todo]));
+  }
+
+  @override
+  void onChange(Change<TodoState> change) {
+    super.onChange(change);
+    print(change);
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    super.onError(error, stackTrace);
+    print(error);
   }
 }

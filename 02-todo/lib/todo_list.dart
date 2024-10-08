@@ -20,11 +20,14 @@ class TodoList extends StatelessWidget {
       ),
       body: BlocBuilder<TodoCubit, TodoState>(
         builder: (context, state) {
+          if (state is TodoSuccess) {}
           return ListView.builder(
             itemCount: state.todos.length,
             itemBuilder: (context, index) {
-              return Text(
-                  '${state.todos[index].name} - ${state.todos[index].createdAt.toString()}');
+              return ListTile(
+                title: Text(state.todos[index].name),
+                subtitle: Text(state.todos[index].createdAt.toString()),
+              );
             },
           );
         },
