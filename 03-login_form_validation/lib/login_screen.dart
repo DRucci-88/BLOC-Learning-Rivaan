@@ -11,8 +11,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 15),
               LoginField(
                 hintText: 'Email',
-                controller: emailController,
+                controller: _emailController,
               ),
               const SizedBox(height: 15),
               LoginField(
                 hintText: 'Password',
-                controller: passwordController,
+                controller: _passwordController,
               ),
               const SizedBox(height: 20),
               const GradientButton(),
