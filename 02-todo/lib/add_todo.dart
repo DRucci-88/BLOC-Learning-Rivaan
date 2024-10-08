@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/cubit/todo_cubit.dart';
 
 class AddTodo extends StatefulWidget {
   const AddTodo({super.key});
@@ -12,6 +14,8 @@ class _AddTodoState extends State<AddTodo> {
 
   @override
   Widget build(BuildContext context) {
+    final todoCubit = BlocProvider.of<TodoCubit>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Todo'),
@@ -25,7 +29,10 @@ class _AddTodoState extends State<AddTodo> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                todoCubit.add(_todoTitleController.text.trim());
+                Navigator.of(context).pop();
+              },
               child: const Text('Add'),
             )
           ],
