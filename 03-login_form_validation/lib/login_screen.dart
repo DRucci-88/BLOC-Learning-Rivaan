@@ -22,13 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is AuthFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error),
-              ),
-            );
-          }
           if (state is AuthSuccess) {
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
@@ -37,6 +30,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               (route) => false,
+            );
+          }
+          if (state is AuthFailure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.error),
+              ),
             );
           }
         },
@@ -85,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
                   GradientButton(
+                    title: 'Sign in',
                     onPressed: () {
                       context.read<AuthBloc>().add(AuthLoginRequested(
                             email: _emailController.text.trim(),
