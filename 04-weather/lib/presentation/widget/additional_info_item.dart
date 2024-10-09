@@ -4,6 +4,7 @@ class AdditionalInfoItem extends StatelessWidget {
   final IconData icon;
   final String label;
   final String value;
+
   const AdditionalInfoItem({
     super.key,
     required this.icon,
